@@ -41,41 +41,36 @@
         <!-- Search box 3 start -->
         <div class="search-box-4 sb-8">
             <form action="#" method="">
-                <div class="form-group">
+                <div class="{% url 'search'%}">
                     <input type="text" name="keyword" placeholder="Search by name" class="form-control">
                 </div>
-                <div class="form-group">
-                    <select class="form-control search-fields" name="select-brand">
-                        <option selected="true" disabled="disabled">Brand</option>
-                        <option>Audi</option>
-                        <option>BMW</option>
-                        <option>Honda</option>
-                        <option>Nissan</option>
-                    </select>
-                </div>
+               
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-make">
                         <option selected="true" disabled="disabled">Model</option>
-                        <option>BMW</option>
-                        <option>Honda</option>
-                        <option>Lamborghini Huracán</option>
-                        <option>Sports Car</option>
+
+                        {% for model in search_fields%}
+                            <option value="{{model.model}}">{{ model.model }}</option>
+                        {% endfor%}
+                       
                     </select>
                 </div>
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-location">
                         <option selected="true" disabled="disabled">Location</option>
-                        <option>United States</option>
-                        <option>United Kingdom</option>
+                        {% for city in search_fields%}
+                            <option value="{{city.model}}">{{ city.model }}</option>
+                        {% endfor%}
+                       
                     </select>
                 </div>
                 <div class="form-group">
                     <select class="form-control search-fields" name="select-year">
                         <option selected="true" disabled="disabled">Year</option>
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                        <option>2019</option>
+                        {% for year in search_fields%}
+                            <option value="{{year.model}}">{{ year.model }}</option>
+                        {% endfor%}
+                       
                     </select>
                 </div>
                 <div class="form-group">
@@ -166,7 +161,7 @@
                         </div>
                         <div class="detail">
                             <h1 class="title">
-                                <a href="car-details.html">{{car.car_title}}</a>
+                                <a href="{% url 'car_detail' car.id %}">{{car.car_title}}</a>
                             </h1>
                             <div class="location">
                                 <a href="car-details.html">
@@ -268,7 +263,7 @@
                     </div>
                     <div class="detail">
                         <h1 class="title">
-                            <a href="car-details.html">L{{car.car_title}}</a>
+                            <a href="{% url 'car_detail' car.id %}">L{{car.car_title}}</a>
                         </h1>
                         <div class="location">
                             <a href="car-details.html">
@@ -348,15 +343,6 @@
 </div>
 <!-- Intro section end -->
 
-
-<!-- Full Page Search -->
-<div id="full-page-search">
-    <button type="button" class="close">×</button>
-    <form action="https://storage.googleapis.com/theme-vessel/carhouse/index.html#" class="search-header">
-        <input type="search" value="" placeholder="type keyword(s) here. Eg: audi, benz etc" />
-        <button type="submit" class="btn btn-sm button-theme">Search</button>
-    </form>
-</div>
 
 <!-- Car Overview Modal -->
 <div class="car-model-2">

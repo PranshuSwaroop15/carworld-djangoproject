@@ -12,6 +12,8 @@ def home(request):
 
     all_cars=Car.objects.order_by('-created_date')
 
+    search_fields=Car.objects.values('model','city','year','body_style')
+
     data={
         'teams':teams,
         'featured_cars':featured_cars,
